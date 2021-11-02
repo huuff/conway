@@ -9,15 +9,15 @@ export class Grid {
   constructor(
     private readonly rowNumber: number,
     private readonly colNumber: number,
-    aliveFactor: number,
+    birthFactor: number,
   ) {
-    if (aliveFactor < 0 || aliveFactor > 1) {
-      throw new InvalidArgumentError(`aliveFactor must be between 0 and 1, current value: ${aliveFactor}`)
+    if (birthFactor < 0 || birthFactor > 1) {
+      throw new InvalidArgumentError(`birthFactor must be between 0 and 1, current value: ${birthFactor}`)
     }
 
     this.internalGrid = new Array(this.internalGridSize());
     for (let i = 0; i <= this.internalGridSize(); i++) {
-      if (Math.random() < aliveFactor) {
+      if (Math.random() < birthFactor) {
         this.internalGrid[i] = true;
       } else {
         this.internalGrid[i] = false;
