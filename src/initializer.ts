@@ -1,4 +1,3 @@
-import { Grid } from "./grid";
 import { InvalidArgumentError } from "./errors";
 
 export function initializeGrid(internalGrid: boolean[], birthFactor: number) {

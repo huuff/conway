@@ -5,15 +5,18 @@ import { initializeGrid } from "./initializer";
 type RowNumberAndContent = { y: number, row: boolean[], }
 
 export class Grid {
-  // MUT: Wrap in a readonly generic type
-  private readonly internalGrid: boolean[];
+  private readonly internalGrid: ReadonlyArray<boolean>;
 
   constructor(
     private readonly rowNumber: number,
     private readonly colNumber: number,
-    birthFactor: number,
+    initialGrid: boolean[],
   ) {
-    this.internalGrid = initializeGrid(new Array(rowNumber * colNumber), birthFactor);
+    this.internalGrid = initialGrid as ReadonlyArray<boolean>;
+  }
+
+  static createWithBirthFactor(rowNumber: number, colNumber: number, birthFactor: number) {
+    return new Grid(rowNumber, colNumber, initializeGrid(new Array(rowNumber * colNumber), birthFactor));
   }
 
   public cell(p: Point): boolean {
@@ -28,9 +31,10 @@ export class Grid {
     return p.neighbors().filter(n => this.isInGrid(n)).map(n => this.cell(n));
   }
 
-  // MUT: return a copy of the grid
-  public setAlive(p: Point, alive: boolean): void {
-    this.internalGrid[this.pointToIndex(p)] = alive;
+  public setAlive(p: Point, alive: boolean): Grid {
+    const modifiedGrid = this.internalGrid.slice();
+    modifiedGrid[this.pointToIndex(p)] = alive;
+    return new Grid(this.rowNumber, this.colNumber, modifiedGrid);
   }
 
   public *rowsIterator(): Generator<RowNumberAndContent, void, void> {

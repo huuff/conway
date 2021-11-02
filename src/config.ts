@@ -1,14 +1,14 @@
+import { Grid }  from "./grid";
 import { displayTypes, Display } from "./display";
-import { Game } from "./game";
-import { Grid } from "./grid";
+import {Game} from "./game";
 
 export class Config {
-  private readonly rowNumber: number;
-  private readonly colNumber: number;
-  private readonly birthFactor: number;
-  private readonly cellSize: number;
-  private readonly speed: number;
-  private readonly display: Display;
+  rowNumber: number;
+  colNumber: number;
+  birthFactor: number;
+  cellSize: number;
+  speed: number;
+  display: Display;
 
   constructor(container: HTMLDivElement) {
     this.colNumber = this.getInputNumber("colNumber");
@@ -21,12 +21,12 @@ export class Config {
     ](container, this.cellSize);
   }
 
-  public get game(): Game {
-    return new Game(
-      new Grid(this.colNumber, this.rowNumber, this.birthFactor),
-      this.display,
-      this.speed,
-    );
+  public newGrid(): Grid {
+    return Grid.createWithBirthFactor(this.rowNumber, this.colNumber, this.birthFactor)
+  }
+
+  public newGame(): Game {
+    return new Game(this.newGrid(), this.display, this.speed);
   }
   
   private getInputNumber(inputId: string): number {

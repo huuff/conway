@@ -5,7 +5,7 @@ export class Game {
   private intervalID: number;
 
   constructor(
-    readonly grid: Grid,
+    private grid: Grid,
     private readonly display: Display,
     private readonly speed: number,
   ) {}
@@ -14,7 +14,7 @@ export class Game {
   public start(): void {
     this.display.render(this.grid);
     this.intervalID = window.setInterval(() => {
-      this.update(); // MUT: Make this return a copy of the grid and pass it below
+      this.grid = this.update(this.grid); // MUT: Make this return a copy of the grid and pass it below
       this.display.render(this.grid);
     }, 5000 / this.speed); 
   }
@@ -23,19 +23,20 @@ export class Game {
     window.clearInterval(this.intervalID);
   }
 
-  private update(): void {
-    for (let p of this.grid.gridIterator()) {
-      const cell = this.grid.cell(p);
-      const neighborsAlive = this.grid.neighbors(p).filter(n => n).reduce((a, _) => a + 1, 0);
+  private update(grid: Grid): Grid {
+    for (let p of grid.gridIterator()) {
+      const cell = grid.cell(p);
+      const neighborsAlive = grid.neighbors(p).filter(n => n).reduce((a, _) => a + 1, 0);
       if (cell) {
         if (neighborsAlive < 2 || neighborsAlive > 3) {
-          this.grid.setAlive(p, false); 
+          grid = grid.setAlive(p, false); 
         }
       } else {
         if (neighborsAlive === 3) {
-          this.grid.setAlive(p, true);
+          grid = grid.setAlive(p, true);
         }
       }
     }
+    return grid;
   }
 }
