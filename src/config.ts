@@ -21,7 +21,7 @@ export class Config {
 
   public get game(): Game {
     return new Game(
-      new Grid(this.colNumber, this.rowNumber, this.birthFactor), // TODO: Configurable aliveFactor
+      new Grid(this.colNumber, this.rowNumber, this.birthFactor),
       this.display
     );
   }
