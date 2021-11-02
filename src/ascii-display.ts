@@ -1,6 +1,7 @@
 import { Grid } from "./grid";
+import { Display } from "./display";
 
-export class AsciiDisplay {
+export class AsciiDisplay implements Display {
   
   constructor(
     private readonly container: HTMLDivElement,

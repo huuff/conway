@@ -1,4 +1,4 @@
-import {AsciiDisplay} from "./ascii-display";
+import { Display } from "./display";
 import { Grid } from "./grid";
 
 export class Game {
@@ -6,7 +6,7 @@ export class Game {
 
   constructor(
     private readonly grid: Grid,
-    private readonly display: AsciiDisplay,
+    private readonly display: Display,
   ) {}
 
 

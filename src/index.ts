@@ -1,11 +1,13 @@
 import { Grid } from "./grid";
 import { AsciiDisplay } from "./ascii-display";
+import { TableDisplay } from "./table-display";
 import { Game } from "./game";
 
 const gameContainer = document.getElementById("main") as HTMLDivElement;
 
 const grid = new Grid(15, 15, 0.20);
-const display = new AsciiDisplay(gameContainer);
+//const display = new AsciiDisplay(gameContainer);
+const display = new TableDisplay(gameContainer);
 
 let game = new Game(grid, display);
 game.start();
