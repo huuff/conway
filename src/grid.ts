@@ -32,9 +32,25 @@ export class Grid {
     return this.internalGrid[this.pointToIndex(p)];
   }
 
+  public neighbors(p: Point): boolean[] {
+    return p.neighbors().filter(n => this.isInGrid(n)).map(n => this.cell(n));
+  }
+
+  public setAlive(p: Point, alive: boolean): void {
+    this.internalGrid[this.pointToIndex(p)] = alive;
+  }
+
   public *rowsIterator(): Generator<boolean[], void, void> {
     for (let i = 0; i < this.internalGridSize(); i += this.colNumber) {
       yield this.internalGrid.slice(i, i + this.colNumber );
+    }
+  }
+
+  public *gridIterator(): Generator<Point, void, void> {
+    for (let x = 0; x < this.rowNumber; x++) {
+      for (let y = 0; y < this.colNumber; y++) {
+        yield new Point(x, y);
+      }
     }
   }
 
@@ -44,7 +60,7 @@ export class Grid {
 
   private isInGrid(p: Point): boolean {
     let index = this.pointToIndex(p); 
-    return index > 0 && index <= this.internalGridSize();
+    return (index >= 0) && (index <= this.internalGridSize());
   }
 
   private pointToIndex(p: Point): number {
