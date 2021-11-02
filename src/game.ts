@@ -13,7 +13,7 @@ export class Game {
   public start(): void {
     this.display.render(this.grid);
     this.intervalID = window.setInterval(() => {
-      this.update();
+      this.update(); // MUT: Make this return a copy of the grid and pass it below
       this.display.render(this.grid);
     }, 1000) 
   }

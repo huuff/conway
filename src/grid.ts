@@ -3,6 +3,7 @@ import { Point } from "./point";
 export class InvalidArgumentError extends Error {};
 
 export class Grid {
+  // MUT: Wrap in a readonly generic type
   private readonly internalGrid: boolean[];
 
   constructor(
@@ -36,6 +37,7 @@ export class Grid {
     return p.neighbors().filter(n => this.isInGrid(n)).map(n => this.cell(n));
   }
 
+  // MUT: return a copy of the grid
   public setAlive(p: Point, alive: boolean): void {
     this.internalGrid[this.pointToIndex(p)] = alive;
   }
