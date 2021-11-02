@@ -5,7 +5,7 @@ export class Game {
   private intervalID: number;
 
   constructor(
-    private readonly grid: Grid,
+    readonly grid: Grid,
     private readonly display: Display,
     private readonly speed: number,
   ) {}

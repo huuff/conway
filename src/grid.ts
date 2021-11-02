@@ -64,8 +64,7 @@ export class Grid {
   }
 
   private isInGrid(p: Point): boolean {
-    let index = this.pointToIndex(p); 
-    return (index >= 0) && (index <= this.internalGridSize());
+    return p.x >= 0 && p.y >= 0 && p.x < this.colNumber && p.y < this.rowNumber;
   }
 
   private pointToIndex(p: Point): number {
