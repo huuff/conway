@@ -34,7 +34,7 @@ export class Grid {
 
   public *rowsIterator(): Generator<boolean[], void, void> {
     for (let i = 0; i < this.internalGridSize(); i += this.colNumber) {
-      yield this.internalGrid.slice(i);
+      yield this.internalGrid.slice(i, i + this.colNumber );
     }
   }
 
