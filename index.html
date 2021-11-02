@@ -2,40 +2,51 @@
 <html>
 <head>
   <meta charset="UTF-8">
+  <title>Conway's Game of Life</title>
 </head>
-<body>
-  <h1>Conway</h1>
-  <div id="main"></div>
+<body class="d-flex flex-column align-items-center">
+  <h1 class="display-1 mb-3">Conway</h1>
+  <div id="main" class="mb-3 w-75 h-75 d-flex flex-row justify-content-center"></div>
   <div id="controls">
-    <label>
-      Grid size:
-      <input type="number" min="1" max="100" value="15" id="rowNumber"> &times; <input type="number" min="0" max="100" value="15" id="colNumber">
-    </label>
-    <label>
-      Display type:
-      <select id="displayType">
-        <option value="table">Table</option>
-        <option value="ascii">Ascii</option>
-      </select>
-    </label>
-    <label>
-      <!-- TODO: Add tooltip here describing what it is -->
-      Birth factor
-      <input type="range" min="0.01" max="1" value="0.20" id="birthFactor" step="any">
-    </label>
-    <label>
-      Cell size
-      <input type="range" min="1" max="100" value="20" id="cellSize" step="1">
-    </label>
-    <label>
-      Speed
-      <input type="range" min="1" max="100" value="50" id="speed" step="1">
-    </label>
+    <div class="d-flex flex-row justify-content-center mb-2">
+      <label>
+        Grid size:
+        <input type="number" min="1" max="100" value="15" id="rowNumber"> &times; <input type="number" min="0" max="100" value="15" id="colNumber">
+      </label>
+    </div>
+    <div class="d-flex flex-row justify-content-center mb-2">
+      <label>
+        Display type:
+        <select id="displayType">
+          <option value="table">Table</option>
+          <option value="ascii">Ascii</option>
+        </select>
+      </label>
+    </div>
+    <div class="d-flex flex-row justify-content-center mb-2">
+      <label>
+        <!-- TODO: Add tooltip here describing what it is -->
+        Birth factor
+        <input type="range" min="0.01" max="1" value="0.20" id="birthFactor" step="any">
+      </label>
+    </div>
+    <div class="d-flex flex-row justify-content-center mb-2">
+      <label>
+        Cell size
+        <input type="range" min="1" max="100" value="20" id="cellSize" step="1">
+      </label>
+    </div>
+    <div class="d-flex flex-row justify-content-center mb-2">
+      <label>
+        Speed
+        <input type="range" min="1" max="100" value="50" id="speed" step="1">
+      </label>
+    </div>
   </div>
 
-  <div>
+  <div class="mt-5">
     <label>
-      Analyze cell: (<input type="number" id="analyzeX">, <input type="number" id="analyzeY">) <button type="submit" id="analyze">Analyze</button>
+      Analyze cell: (<input type="number" id="analyzeX">, <input type="number" id="analyzeY">) <button type="submit" id="analyze" class="btn btn-primary">Analyze</button>
     </label>
   <div>
 </body>

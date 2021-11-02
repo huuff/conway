@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Config } from "./config";
 import { Point } from "./point";
 import { Game } from "./game";

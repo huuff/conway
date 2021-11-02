@@ -29,7 +29,7 @@ export class Grid {
 
   public cell(p: Point): boolean {
     if (!this.isInGrid(p)) {
-      throw new InvalidArgumentError(`Point ${JSON.stringify(p)} is not in the grid of ${this.colNumber}x${this.rowNumber}`)
+      throw new InvalidArgumentError(`Point ${JSON.stringify(p)} is not in the grid of ${this.rowNumber}x${this.colNumber}`)
     }
 
     return this.internalGrid[this.pointToIndex(p)];
@@ -51,9 +51,10 @@ export class Grid {
     }
   }
 
+  // TODO: Return point and cell contents?
   public *gridIterator(): Generator<Point, void, void> {
-    for (let x = 0; x < this.rowNumber; x++) {
-      for (let y = 0; y < this.colNumber; y++) {
+    for (let x = 0; x < this.colNumber; x++) {
+      for (let y = 0; y < this.rowNumber; y++) {
         yield new Point(x, y);
       }
     }
