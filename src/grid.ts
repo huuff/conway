@@ -66,7 +66,7 @@ export class Grid {
   }
 
   private pointToIndex(p: Point): number {
-    return (p.x * this.rowNumber) + p.y;
+    return (p.y * this.rowNumber) + p.x;
   }
 
 }
