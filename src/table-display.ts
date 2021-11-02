@@ -3,7 +3,10 @@ import { Display } from "./display";
 
 export class TableDisplay implements Display {
 
-  constructor(private readonly container: HTMLDivElement) {}
+  constructor(
+    private readonly container: HTMLDivElement,
+    private readonly cellSize: number,
+  ) {}
 
   public render(grid: Grid): void {
     this.container.firstElementChild?.remove();
@@ -14,8 +17,8 @@ export class TableDisplay implements Display {
       
       for (let column of row) {
         let columnElement = document.createElement("td");
-        columnElement.style.width = "20px";
-        columnElement.style.height = "20px";
+        columnElement.style.width = `${this.cellSize}px`;
+        columnElement.style.height = `${this.cellSize}px`;
         if (column) {
           columnElement.style.backgroundColor = "black";
         }

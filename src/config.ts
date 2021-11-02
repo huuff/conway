@@ -6,15 +6,17 @@ export class Config {
   private readonly rowNumber: number;
   private readonly colNumber: number;
   private readonly birthFactor: number;
+  private readonly cellSize: number;
   private readonly display: Display;
 
   constructor(container: HTMLDivElement) {
     this.colNumber = this.getInputNumber("colNumber");
     this.rowNumber = this.getInputNumber("rowNumber");
     this.birthFactor = this.getInputNumber("birthFactor");
+    this.cellSize = this.getInputNumber("cellSize");
     this.display = new displayTypes[
       (document.getElementById("displayType")! as HTMLSelectElement).value
-    ](container);
+    ](container, this.cellSize);
   }
 
   public get game(): Game {
