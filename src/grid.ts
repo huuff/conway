@@ -1,6 +1,6 @@
 import { Point } from "./point";
-
-export class InvalidArgumentError extends Error {};
+import { InvalidArgumentError } from "./errors";
+import { initializeGrid } from "./initializer";
 
 type RowNumberAndContent = { y: number, row: boolean[], }
 
@@ -13,18 +13,7 @@ export class Grid {
     private readonly colNumber: number,
     birthFactor: number,
   ) {
-    if (birthFactor < 0 || birthFactor > 1) {
-      throw new InvalidArgumentError(`birthFactor must be between 0 and 1, current value: ${birthFactor}`)
-    }
-
-    this.internalGrid = new Array(this.internalGridSize());
-    for (let i = 0; i <= this.internalGridSize(); i++) {
-      if (Math.random() < birthFactor) {
-        this.internalGrid[i] = true;
-      } else {
-        this.internalGrid[i] = false;
-      }
-    }
+    this.internalGrid = initializeGrid(new Array(rowNumber * colNumber), birthFactor);
   }
 
   public cell(p: Point): boolean {
@@ -58,10 +47,6 @@ export class Grid {
         yield new Point(x, y);
       }
     }
-  }
-
-  private internalGridSize() {
-    return this.rowNumber * this.colNumber;
   }
 
   private isInGrid(p: Point): boolean {
