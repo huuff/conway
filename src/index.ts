@@ -5,11 +5,7 @@ import { Game } from "./game";
 const gameContainer = document.getElementById("main") as HTMLDivElement;
 
 const grid = new Grid(15, 15, 0.20);
-const display = new AsciiDisplay(grid);
-const game = new Game(grid);
+const display = new AsciiDisplay(gameContainer);
 
-setInterval(() => {
-  game.update();
-  display.render(gameContainer)
-}, 1000)
-
+const game = new Game(grid, display);
+game.start();
