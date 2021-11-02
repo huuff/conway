@@ -12,13 +12,14 @@ export class TableDisplay implements Display {
     this.container.firstElementChild?.remove();
 
     const contents = document.createElement("table");
-    for (let row of grid.rowsIterator()) {
+    for (let {y, row} of grid.rowsIterator()) {
       let rowElement = document.createElement("tr");
       
-      for (let column of row) {
+      for (let [x, column] of row.entries()) {
         let columnElement = document.createElement("td");
         columnElement.style.width = `${this.cellSize}px`;
         columnElement.style.height = `${this.cellSize}px`;
+        columnElement.id = `(${x}, ${y})`;
         if (column) {
           columnElement.style.backgroundColor = "black";
         }

@@ -14,7 +14,7 @@ export class AsciiDisplay implements Display {
     const contents = document.createElement("p");
     contents.style.fontFamily = "mono";
     contents.style.fontSize = `${this.cellSize}px`
-    for (let row of grid.rowsIterator()) {
+    for (let { row } of grid.rowsIterator()) {
       contents.innerHTML += row.map<string>(c => c ? "#" : ".").reduce((a, x) => a + x, "");
       contents.innerHTML += "<br>";
     }

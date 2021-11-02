@@ -2,6 +2,8 @@ import { Point } from "./point";
 
 export class InvalidArgumentError extends Error {};
 
+type RowNumberAndContent = { y: number, row: boolean[], }
+
 export class Grid {
   // MUT: Wrap in a readonly generic type
   private readonly internalGrid: boolean[];
@@ -42,9 +44,10 @@ export class Grid {
     this.internalGrid[this.pointToIndex(p)] = alive;
   }
 
-  public *rowsIterator(): Generator<boolean[], void, void> {
-    for (let i = 0; i < this.internalGridSize(); i += this.colNumber) {
-      yield this.internalGrid.slice(i, i + this.colNumber );
+  public *rowsIterator(): Generator<RowNumberAndContent, void, void> {
+    for (let i = 0; i < this.rowNumber; i++) {
+      const rowBeginning = i * this.colNumber;
+      yield {y: i, row: this.internalGrid.slice(rowBeginning, rowBeginning + this.colNumber)};
     }
   }
 
