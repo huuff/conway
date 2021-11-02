@@ -7,6 +7,7 @@ export class Config {
   private readonly colNumber: number;
   private readonly birthFactor: number;
   private readonly cellSize: number;
+  private readonly speed: number;
   private readonly display: Display;
 
   constructor(container: HTMLDivElement) {
@@ -14,6 +15,7 @@ export class Config {
     this.rowNumber = this.getInputNumber("rowNumber");
     this.birthFactor = this.getInputNumber("birthFactor");
     this.cellSize = this.getInputNumber("cellSize");
+    this.speed = this.getInputNumber("speed");
     this.display = new displayTypes[
       (document.getElementById("displayType")! as HTMLSelectElement).value
     ](container, this.cellSize);
@@ -22,7 +24,8 @@ export class Config {
   public get game(): Game {
     return new Game(
       new Grid(this.colNumber, this.rowNumber, this.birthFactor),
-      this.display
+      this.display,
+      this.speed,
     );
   }
   

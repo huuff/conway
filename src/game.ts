@@ -7,6 +7,7 @@ export class Game {
   constructor(
     private readonly grid: Grid,
     private readonly display: Display,
+    private readonly speed: number,
   ) {}
 
 
@@ -15,7 +16,7 @@ export class Game {
     this.intervalID = window.setInterval(() => {
       this.update(); // MUT: Make this return a copy of the grid and pass it below
       this.display.render(this.grid);
-    }, 1000) 
+    }, 5000 / this.speed); 
   }
 
   public stop(): void {
