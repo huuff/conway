@@ -5,10 +5,10 @@ import { Point } from "./point";
 
 const gameContainer = document.getElementById("main") as HTMLDivElement;
 
-const game: Game = new Game(new Config(gameContainer));
+const game: Game = new Game(Config.fromForm(gameContainer));
 
 document.getElementById("controls")!.addEventListener("change", () => {
-  game.updateConfig(new Config(gameContainer));
+  game.updateConfig(Config.fromForm(gameContainer));
 });
 
 document.getElementById("analyze")!.addEventListener("click", (e) => {

@@ -1,6 +1,7 @@
 import { Point } from "./point";
 import { InvalidArgumentError } from "./errors";
 import { initializeGrid } from "./initialize";
+import { Config } from "./config";
 
 type RowNumberAndContent = { y: number, row: boolean[], }
 
@@ -15,8 +16,8 @@ export class Grid {
     this.internalGrid = initialGrid as ReadonlyArray<boolean>;
   }
 
-  static createWithBirthFactor(rowNumber: number, colNumber: number, birthFactor: number) {
-    return new Grid(rowNumber, colNumber, initializeGrid(new Array(rowNumber * colNumber), birthFactor));
+  static fromConfig(config: Config) {
+    return new Grid(config.rowNumber, config.colNumber, initializeGrid(new Array(config.rowNumber * config.colNumber), config.birthFactor));
   }
 
   public cell(p: Point): boolean {

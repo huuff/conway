@@ -23,7 +23,7 @@ export class Game {
   }
 
   public updateConfig(config: Config): void {
-    this.grid = config.newGrid();
+    this.grid = Grid.fromConfig(config);
     this.display = config.display;
     this.speed = config.speed;
   }
