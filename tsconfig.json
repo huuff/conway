@@ -6,6 +6,7 @@
     "allowJs": true,
     "strictNullChecks": true,
     "downlevelIteration": true,
+    "moduleResolution": "node",
     "sourceMap": true
   }
 }

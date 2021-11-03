@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Tooltip } from 'bootstrap';
 import { Config } from "./config";
 import { Game } from "./game";
 import { Point } from "./point";
@@ -22,3 +23,8 @@ document.getElementById("analyze")!.addEventListener("click", (e) => {
   }
 });
 
+// Enable bootstrap tooltips
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new Tooltip(tooltipTriggerEl)
+})
