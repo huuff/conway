@@ -4,6 +4,7 @@ import { initializeGrid } from "./initialize";
 import { Config } from "./config";
 
 type RowNumberAndContent = { y: number, row: boolean[], }
+type PointAndCellContent = { point: Point, cell: boolean }
 
 export class Grid {
   private readonly internalGrid: ReadonlyArray<boolean>;
@@ -45,11 +46,11 @@ export class Grid {
     }
   }
 
-  // TODO: Return point and cell contents?
-  public *gridIterator(): Generator<Point, void, void> {
+  public *gridIterator(): Generator<PointAndCellContent, void, void> {
     for (let x = 0; x < this.colNumber; x++) {
       for (let y = 0; y < this.rowNumber; y++) {
-        yield new Point(x, y);
+        const point = new Point(x, y);
+        yield { point: point, cell: this.cell(point) }
       }
     }
   }

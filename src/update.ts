@@ -1,16 +1,15 @@
 import { Grid } from "./grid";
 
 export function update(grid: Grid): Grid {
-  for (let p of grid.gridIterator()) {
-    const cell = grid.cell(p);
-    const neighborsAlive = grid.neighbors(p).filter(n => n).reduce((a, _) => a + 1, 0);
+  for (let { point, cell } of grid.gridIterator()) {
+    const neighborsAlive = grid.neighbors(point).filter(n => n).reduce((a, _) => a + 1, 0);
     if (cell) {
       if (neighborsAlive < 2 || neighborsAlive > 3) {
-        grid = grid.setAlive(p, false);
+        grid = grid.setAlive(point, false);
       }
     } else {
       if (neighborsAlive === 3) {
-        grid = grid.setAlive(p, true);
+        grid = grid.setAlive(point, true);
       }
     }
   }
