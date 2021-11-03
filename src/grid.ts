@@ -1,6 +1,6 @@
 import { Point } from "./point";
 import { InvalidArgumentError } from "./errors";
-import { initializeGrid } from "./initializer";
+import { initializeGrid } from "./initialize";
 
 type RowNumberAndContent = { y: number, row: boolean[], }
 
