@@ -18,7 +18,7 @@ document.getElementById("analyze")!.addEventListener("click", (e) => {
   console.log(`Analyzing ${JSON.stringify(p)}`);
   console.log(`Neighbors: `)
   for (let neighbor of p.neighbors()) {
-    console.log(`${JSON.stringify(neighbor)}: ${game.grid.cell(neighbor)}`) 
+    console.log(`\t ${JSON.stringify(neighbor)}: ${game.grid.cell(neighbor)}`) 
   }
 });
 
