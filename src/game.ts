@@ -4,20 +4,19 @@ import { update } from "./update";
 import { Config } from "./config";
 
 export class Game {
-  private intervalID: number;
+  private readonly intervalId: number;
+  public grid: Grid;
+  public display: Display;
+  public speed: number;
 
-  constructor(
-    public grid: Grid,
-    public display: Display,
-    public speed: number,
-  ) {
-    this.start();
+  constructor(config: Config) {
+    this.updateConfig(config);
+    this.intervalId = this.start();
   }
 
-
-  public start(): void {
+  public start(): number {
     this.display.render(this.grid);
-    this.intervalID = window.setInterval(() => {
+    return window.setInterval(() => {
       this.grid = update(this.grid);
       this.display.render(this.grid);
     }, 5000 / this.speed); 
@@ -30,6 +29,6 @@ export class Game {
   }
 
   public stop(): void {
-    window.clearInterval(this.intervalID);
+    window.clearInterval(this.intervalId);
   }
 }

@@ -1,6 +1,5 @@
 import { Grid }  from "./grid";
 import { displayTypes, Display } from "./display";
-import {Game} from "./game";
 
 export class Config {
   rowNumber: number;
@@ -25,10 +24,6 @@ export class Config {
     return Grid.createWithBirthFactor(this.rowNumber, this.colNumber, this.birthFactor)
   }
 
-  public newGame(): Game {
-    return new Game(this.newGrid(), this.display, this.speed);
-  }
-  
   private getInputNumber(inputId: string): number {
     return +(document.getElementById(inputId)! as HTMLInputElement).value 
   }

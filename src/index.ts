@@ -5,7 +5,7 @@ import { Point } from "./point";
 
 const gameContainer = document.getElementById("main") as HTMLDivElement;
 
-const game: Game = new Config(gameContainer).newGame();
+const game: Game = new Game(new Config(gameContainer));
 
 document.getElementById("controls")!.addEventListener("change", () => {
   game.updateConfig(new Config(gameContainer));
