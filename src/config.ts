@@ -21,6 +21,10 @@ export class Config {
     );
   }
 
+  public gridDifferentTo(other: Config): boolean {
+    return this.rowNumber != other.rowNumber || this.colNumber != other.colNumber || this.birthFactor != other.birthFactor;
+  }
+
   private static getInputNumber(inputId: string): number {
     return +(document.getElementById(inputId)! as HTMLInputElement).value 
   }

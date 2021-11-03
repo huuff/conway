@@ -4,7 +4,7 @@ import { update } from "./update";
 import { Config } from "./config";
 
 export class Game {
-  private readonly intervalId: number;
+  private intervalId: number;
   private currentConfig: Config;
   public grid: Grid;
 
@@ -23,8 +23,17 @@ export class Game {
   }
 
   public updateConfig(config: Config): void {
-    this.currentConfig = config;
-    this.grid = Grid.fromConfig(config);
+    if (!this.currentConfig || this.currentConfig.gridDifferentTo(config)) {
+      this.grid = Grid.fromConfig(config);
+    }
+
+    if (this.currentConfig && (this.currentConfig.speed != config.speed)) {
+      this.stop();
+      this.currentConfig = config;
+      this.intervalId = this.start();
+    } else {
+      this.currentConfig = config;
+    }
   }
 
   public stop(): void {
