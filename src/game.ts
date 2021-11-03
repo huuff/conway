@@ -1,4 +1,4 @@
-import { Display } from "./display";
+import { Display, displayFromConfig } from "./display";
 import { Grid } from "./grid";
 import { update } from "./update";
 import { Config } from "./config";
@@ -24,7 +24,7 @@ export class Game {
 
   public updateConfig(config: Config): void {
     this.grid = Grid.fromConfig(config);
-    this.display = config.display;
+    this.display = displayFromConfig(config);
     this.speed = config.speed;
   }
 

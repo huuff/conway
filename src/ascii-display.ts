@@ -1,15 +1,15 @@
 import { Grid } from "./grid";
 import { Display } from "./display";
+import { GAME_CONTAINER } from "./constants";
 
 export class AsciiDisplay implements Display {
   
   constructor(
-    private readonly container: HTMLDivElement,
     private readonly cellSize: number,
   ) {}
 
   public render(grid: Grid) {
-    this.container.firstElementChild?.remove();
+    GAME_CONTAINER.firstElementChild?.remove();
 
     const contents = document.createElement("p");
     contents.style.fontFamily = "mono";
@@ -19,6 +19,6 @@ export class AsciiDisplay implements Display {
       contents.innerHTML += "<br>";
     }
 
-    this.container.appendChild(contents);
+    GAME_CONTAINER.appendChild(contents);
   }
 }

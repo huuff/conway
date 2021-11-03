@@ -1,15 +1,15 @@
 import { Grid } from "./grid";
 import { Display } from "./display";
+import { GAME_CONTAINER } from "./constants";
 
 export class TableDisplay implements Display {
 
   constructor(
-    private readonly container: HTMLDivElement,
     private readonly cellSize: number,
   ) {}
 
   public render(grid: Grid): void {
-    this.container.firstElementChild?.remove();
+    GAME_CONTAINER.firstElementChild?.remove();
 
     const contents = document.createElement("table");
     for (let {y, row} of grid.rowsIterator()) {
@@ -27,6 +27,6 @@ export class TableDisplay implements Display {
       }
       contents.appendChild(rowElement);
     }
-    this.container.appendChild(contents);
+    GAME_CONTAINER.appendChild(contents);
   }
 }

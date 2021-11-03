@@ -3,12 +3,10 @@ import { Config } from "./config";
 import { Game } from "./game";
 import { Point } from "./point";
 
-const gameContainer = document.getElementById("main") as HTMLDivElement;
-
-const game: Game = new Game(Config.fromForm(gameContainer));
+const game: Game = new Game(Config.fromForm());
 
 document.getElementById("controls")!.addEventListener("change", () => {
-  game.updateConfig(Config.fromForm(gameContainer));
+  game.updateConfig(Config.fromForm());
 });
 
 document.getElementById("analyze")!.addEventListener("click", (e) => {

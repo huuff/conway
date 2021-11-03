@@ -1,6 +1,3 @@
-import { Grid }  from "./grid";
-import { displayTypes, Display } from "./display";
-
 export class Config {
   constructor(
     public readonly rowNumber: number,
@@ -8,13 +5,11 @@ export class Config {
     public readonly birthFactor: number,
     public readonly cellSize: number,
     public readonly speed: number,
-    public readonly display: Display
-  ){
-
-  }
+    public readonly displayType: string,
+  ){ }
 
   // Not actually a form but eh
-  static fromForm(container: HTMLDivElement): Config {
+  static fromForm(): Config {
     const cellSize = this.getInputNumber("cellSize");
     return new Config(
       this.getInputNumber("colNumber"),
@@ -22,7 +17,7 @@ export class Config {
       this.getInputNumber("birthFactor"),
       cellSize,
       this.getInputNumber("speed"),
-      new displayTypes[(document.getElementById("displayType")! as HTMLSelectElement).value](container, cellSize)
+      (document.getElementById("displayType")! as HTMLSelectElement).value
     );
   }
 
