@@ -1,15 +1,18 @@
 import { Display } from "./display";
 import { Grid } from "./grid";
 import { update } from "./update";
+import { Config } from "./config";
 
 export class Game {
   private intervalID: number;
 
   constructor(
-    private grid: Grid,
-    private readonly display: Display,
-    private readonly speed: number,
-  ) {}
+    public grid: Grid,
+    public display: Display,
+    public speed: number,
+  ) {
+    this.start();
+  }
 
 
   public start(): void {
@@ -18,6 +21,12 @@ export class Game {
       this.grid = update(this.grid);
       this.display.render(this.grid);
     }, 5000 / this.speed); 
+  }
+
+  public updateConfig(config: Config): void {
+    this.grid = config.newGrid();
+    this.display = config.display;
+    this.speed = config.speed;
   }
 
   public stop(): void {

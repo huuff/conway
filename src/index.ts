@@ -1,32 +1,26 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Config } from "./config";
 import { Game } from "./game";
+import { Point } from "./point";
 
 const gameContainer = document.getElementById("main") as HTMLDivElement;
 
-let currentConfig = new Config(gameContainer);
-let game: Game = currentConfig.newGame();
-game.start();
+const game: Game = new Config(gameContainer).newGame();
 
 document.getElementById("controls")!.addEventListener("change", () => {
-  game.stop();
-  currentConfig = new Config(gameContainer);
-  game = currentConfig.newGame();
-  game.start();
+  game.updateConfig(new Config(gameContainer));
 });
 
-// TODO: Currently broken
-//document.getElementById("analyze")!.addEventListener("click", (e) => {
-  //console.log("asdf");
-  //e.preventDefault();
+document.getElementById("analyze")!.addEventListener("click", (e) => {
+  e.preventDefault();
 
-  //const analyzeX = +(document.getElementById("analyzeX")! as HTMLInputElement).value;
-  //const analyzeY = +(document.getElementById("analyzeY")! as HTMLInputElement).value;
-  //const p = new Point(analyzeX, analyzeY);
-  //console.log(`Analyzing ${JSON.stringify(p)}`);
-  //console.log(`Neighbors: `)
-  //for (let neighbor of p.neighbors()) {
-    //console.log(`${JSON.stringify(neighbor)}: ${game.grid.cell(neighbor)}`) 
-  //}
-//});
+  const analyzeX = +(document.getElementById("analyzeX")! as HTMLInputElement).value;
+  const analyzeY = +(document.getElementById("analyzeY")! as HTMLInputElement).value;
+  const p = new Point(analyzeX, analyzeY);
+  console.log(`Analyzing ${JSON.stringify(p)}`);
+  console.log(`Neighbors: `)
+  for (let neighbor of p.neighbors()) {
+    console.log(`${JSON.stringify(neighbor)}: ${game.grid.cell(neighbor)}`) 
+  }
+});
 
