@@ -10,8 +10,8 @@ export class Grid {
   private readonly internalGrid: ReadonlyArray<boolean>;
 
   constructor(
-    private readonly rowNumber: number,
-    private readonly colNumber: number,
+    readonly rowNumber: number,
+    readonly colNumber: number,
     initialGrid: boolean[],
   ) {
     this.internalGrid = initialGrid as ReadonlyArray<boolean>;
