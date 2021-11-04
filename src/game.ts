@@ -34,6 +34,7 @@ export class Game {
     } else {
       this.currentConfig = config;
     }
+    this.display().render(this.grid);
   }
 
   public stop(): void {
