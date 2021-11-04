@@ -8,8 +8,11 @@ export interface Display {
   render(grid: Grid): void;
 }
 
-// TODO: typing here?
-const displayTypes = {
+interface DisplayTypesMap {
+  [key: string]: new (cellSize: number) => Display;
+}
+
+const displayTypes: DisplayTypesMap = {
   table: TableDisplay,
   ascii: AsciiDisplay,
   canvas: CanvasDisplay,
