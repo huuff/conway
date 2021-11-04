@@ -1,15 +1,36 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const glob = require('glob');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
+
+const PATHS = {
+  src: path.join(__dirname, "src"),
+}
 
 module.exports = {
   entry: './src/index.ts',
   mode: "development",
   output: {
     path: path.resolve(__dirname, "./dist"),
-    filename: "bundle.js",
+    filename: "[name].js",
+    publicPath: "/dist/",
   },
 
   devtool: "source-map",
+
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          name: 'styles',
+          test: /\.css$/,
+          chunks: "all",
+          enforce: true
+        },
+      },
+    },
+  },
 
   module: {
     rules: [
@@ -21,7 +42,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader'
         ]
       }
@@ -40,7 +61,15 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'index.html'
+      template: 'src/index.html'
+    }),
+
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+    }),
+
+    new PurgecssPlugin({
+      paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true} ),
     }),
   ],
 };
