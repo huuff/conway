@@ -1,10 +1,12 @@
 import { Display } from "./display";
 import {Grid} from "./grid";
 import { GAME_CONTAINER } from "./constants";
+import { Point } from "./point";
 
 export class CanvasDisplay implements Display {
   constructor(
-    private readonly cellSize: number
+    private readonly cellSize: number,
+    private readonly highlighted: Point[],
   ) {}
 
   render(grid: Grid): void {
@@ -14,14 +16,28 @@ export class CanvasDisplay implements Display {
 
     const ctx = canvas.getContext("2d")!;
     ctx.clearRect(0, 0, canvas.width, canvas.height); 
-    ctx.fillStyle = "black";
     
+    ctx.beginPath();
+    ctx.fillStyle = "black";
     for (let {point, cell} of grid.gridIterator()) {
       if (cell) {
-        ctx.rect(point.x * this.cellSize, point.y * this.cellSize, this.cellSize, this.cellSize);
+        this.drawCell(ctx, point);
       }
     }
     ctx.fill();
+
+    ctx.beginPath();
+    ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
+    for (let { point } of grid.gridIterator()) {
+      if (point.in(this.highlighted)) {
+        this.drawCell(ctx, point);
+      }
+    }
+    ctx.fill();
+  }
+
+  private drawCell(ctx: CanvasRenderingContext2D, point: Point): void {
+    ctx.rect(point.x * this.cellSize, point.y * this.cellSize, this.cellSize, this.cellSize);
   }
 
   // Mild repetition

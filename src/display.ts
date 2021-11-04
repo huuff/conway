@@ -3,13 +3,14 @@ import { Grid } from "./grid";
 import { AsciiDisplay } from "./ascii-display";
 import { TableDisplay } from "./table-display";
 import { CanvasDisplay } from "./canvas-display";
+import { Point } from "./point";
 
 export interface Display {
   render(grid: Grid): void;
 }
 
 interface DisplayTypesMap {
-  [key: string]: new (cellSize: number) => Display;
+  [key: string]: new (cellSize: number, hightlights: Point[]) => Display;
 }
 
 const displayTypes: DisplayTypesMap = {
@@ -19,5 +20,8 @@ const displayTypes: DisplayTypesMap = {
 };
 
 export function displayFromConfig(config: Config): Display {
-  return new displayTypes[config.displayType](config.cellSize);
+  return new displayTypes[config.displayType](
+    config.cellSize,
+    config.analyzedCell?.neighbors() ?? []
+  );
 }

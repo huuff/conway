@@ -1,11 +1,13 @@
 import { Grid } from "./grid";
 import { Display } from "./display";
 import { GAME_CONTAINER } from "./constants";
+import { Point } from "./point";
 
 export class TableDisplay implements Display {
 
   constructor(
     private readonly cellSize: number,
+    private readonly highlighted: Point[],
   ) {}
 
   public render(grid: Grid): void {
@@ -20,8 +22,12 @@ export class TableDisplay implements Display {
         columnElement.style.width = `${this.cellSize}px`;
         columnElement.style.height = `${this.cellSize}px`;
         columnElement.id = `(${x}, ${y})`;
+        const cellPoint = new Point(x, y);
+        const isHighlighted: boolean = cellPoint.in(this.highlighted);
         if (column) {
-          columnElement.style.backgroundColor = "black";
+          columnElement.style.backgroundColor = isHighlighted ? "darkred" : "black";
+        } else if (isHighlighted) {
+          columnElement.style.backgroundColor = "red";
         }
         rowElement.appendChild(columnElement);
       }

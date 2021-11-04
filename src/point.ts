@@ -18,4 +18,12 @@ export class Point {
       new Point(this.x - 1, this.y + 1),
     ];
   }
+
+  public equals(other: Point): boolean {
+    return this.x == other.x && this.y == other.y;
+  }
+
+  public in(points: Point[]): boolean {
+    return points.some(p => p.equals(this));
+  }
 }
