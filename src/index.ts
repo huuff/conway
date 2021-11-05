@@ -5,8 +5,16 @@ import { Game } from "./game";
 
 const game: Game = new Game(Config.fromForm());
 
-document.getElementById("controls")!.addEventListener("change", () => {
+const controls = document.getElementById("controls")!;
+controls.addEventListener("change", () => {
   game.updateConfig(Config.fromForm());
+});
+
+const resetAnalysisButton = document.getElementById("resetAnalysis")!;
+resetAnalysisButton.addEventListener("click", () => {
+  (document.getElementById("analyzeX")! as HTMLInputElement).value = "";
+  (document.getElementById('analyzeY')! as HTMLInputElement).value = "";
+  controls.dispatchEvent(new Event("change"));
 });
 
 // Enable bootstrap tooltips
