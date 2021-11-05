@@ -1,4 +1,4 @@
-import { Display, displayFromConfig } from "./display";
+import { Display, displayFromConfig } from "./display/display";
 import { Grid } from "./grid";
 import { update } from "./update";
 import { Config } from "./config";

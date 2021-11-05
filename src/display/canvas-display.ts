@@ -1,7 +1,7 @@
 import { Display } from "./display";
-import {Grid} from "./grid";
-import { GAME_CONTAINER } from "./constants";
-import { Point } from "./point";
+import {Grid} from "../grid";
+import { GAME_CONTAINER } from "../constants";
+import { Point } from "../point";
 
 export class CanvasDisplay implements Display {
   constructor(
