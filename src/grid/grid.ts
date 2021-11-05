@@ -1,7 +1,7 @@
 import { Point } from "./point";
-import { InvalidArgumentError } from "./errors";
+import { InvalidArgumentError } from "../errors";
 import { initializeGrid } from "./initialize";
-import { Config } from "./config";
+import { Config } from "../config";
 
 type RowNumberAndContent = { y: number, row: boolean[], }
 type PointAndCellContent = { point: Point, cell: boolean }

@@ -1,4 +1,4 @@
-import { InvalidArgumentError } from "./errors";
+import { InvalidArgumentError } from "../errors";
 
 export function initializeGrid(internalGrid: boolean[], birthFactor: number) {
   if (birthFactor < 0 || birthFactor > 1) {

@@ -1,5 +1,5 @@
 import { Display, displayFromConfig } from "./display/display";
-import { Grid } from "./grid";
+import { Grid } from "./grid/grid";
 import { update } from "./update";
 import { Config } from "./config";
 

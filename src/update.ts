@@ -1,4 +1,4 @@
-import { Grid } from "./grid";
+import { Grid } from "./grid/grid";
 
 export function update(grid: Grid): Grid {
   for (let { point, cell } of grid.gridIterator()) {

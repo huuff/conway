@@ -1,4 +1,4 @@
-import {Point} from "./point";
+import {Point} from "./grid/point";
 
 export class Config {
   constructor(

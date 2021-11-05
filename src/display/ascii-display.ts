@@ -1,7 +1,7 @@
-import { Grid } from "../grid";
+import { Grid } from "../grid/grid";
 import { Display } from "./display";
 import { GAME_CONTAINER } from "../constants";
-import { Point } from "../point";
+import { Point } from "../grid/point";
 
 export class AsciiDisplay implements Display {
   

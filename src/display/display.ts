@@ -1,9 +1,9 @@
 import { Config } from "../config";
-import { Grid } from "../grid";
+import { Grid } from "../grid/grid";
 import { AsciiDisplay } from "./ascii-display";
 import { TableDisplay } from "./table-display";
 import { CanvasDisplay } from "./canvas-display";
-import { Point } from "../point";
+import { Point } from "../grid/point";
 
 export interface Display {
   render(grid: Grid): void;
