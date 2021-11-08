@@ -1,12 +1,12 @@
 import { Display, displayFromConfig } from "./display/display";
-import { Grid } from "./grid/grid";
+import { gridFromConfig, Grid } from "./grid/grid";
 import { update } from "./update";
 import { Config } from "./config";
 
 export class Game {
   private intervalId: number;
   private currentConfig!: Config;
-  public grid!: Grid;
+  public grid!: Grid<any>;
 
   constructor(config: Config) {
     this.updateConfig(config); 
@@ -24,7 +24,7 @@ export class Game {
 
   public updateConfig(config: Config): void {
     if (!this.currentConfig || this.currentConfig.gridDifferentTo(config)) {
-      this.grid = Grid.fromConfig(config);
+      this.grid = gridFromConfig(config);
     }
 
     if (this.currentConfig && (this.currentConfig.speed != config.speed)) {

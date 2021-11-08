@@ -43,6 +43,14 @@
       </label>
     </div>
     <div class="d-flex flex-row justify-content-center mb-2">
+      <label data-bs-toggle="tooltip" data-bs-placement="right" title="mostly transparent to the user, might affect performance">
+        Grid type:
+        <select id="gridType">
+          <option value="array">Array</option>
+        </select>
+      </label>
+    </div>
+    <div class="d-flex flex-row justify-content-center mb-2">
       <label data-bs-toggle="tooltip" data-bs-placement="right" title="% chance of a cell being alive on start">
         Birth factor
         <input type="range" min="0.01" max="1" value="0.20" id="birthFactor" step="any">

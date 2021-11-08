@@ -8,6 +8,7 @@ export class Config {
     public readonly cellSize: number,
     public readonly speed: number,
     public readonly displayType: string,
+    public readonly gridType: string,
     public readonly analyzedCell?: Point,
   ){ }
 
@@ -21,6 +22,7 @@ export class Config {
       cellSize!,
       this.getInputNumber("speed")!,
       (document.getElementById("displayType")! as HTMLSelectElement).value,
+      (document.getElementById("gridType")! as HTMLSelectElement).value,
       this.getAnalyzedCell(),
     );
   }

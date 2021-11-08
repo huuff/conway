@@ -9,7 +9,7 @@ export class CanvasDisplay implements Display {
     private readonly highlighted: Point[],
   ) {}
 
-  render(grid: Grid): void {
+  render(grid: Grid<any>): void {
     const canvas = this.getOrCreateCanvas();
     canvas.width = grid.colNumber * this.cellSize;
     canvas.height = grid.rowNumber * this.cellSize;
