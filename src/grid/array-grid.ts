@@ -1,6 +1,6 @@
 import { Point } from "./point";
 import { InvalidArgumentError } from "../errors";
-import { Grid, RowNumberAndContent, PointAndCellContent } from "./grid";
+import { Grid, PointAndCellContent } from "./grid";
 import { contains as gridContains, neighbors as gridNeighbors } from "./grid-utils";
 
 
@@ -37,13 +37,6 @@ export class ArrayGrid implements Grid<ArrayGrid> {
     return new ArrayGrid(this.rowNumber, this.colNumber, modifiedGrid);
   }
 
-  public *rowsIterator(): Generator<RowNumberAndContent, void, void> {
-    for (let i = 0; i < this.rowNumber; i++) {
-      const rowBeginning = i * this.colNumber;
-      yield {y: i, row: this.internalGrid.slice(rowBeginning, rowBeginning + this.colNumber)};
-    }
-  }
-
   public *gridIterator(): Generator<PointAndCellContent, void, void> {
     for (let x = 0; x < this.colNumber; x++) {
       for (let y = 0; y < this.rowNumber; y++) {
@@ -52,7 +45,6 @@ export class ArrayGrid implements Grid<ArrayGrid> {
       }
     }
   }
-
 
   private pointToIndex(p: Point): number {
     return (p.y * this.rowNumber) + p.x;

@@ -3,7 +3,6 @@ import { ArrayGrid } from "./array-grid";
 import {Config} from "../config";
 import { initializeGrid } from "./initialize-grid";
 
-export type RowNumberAndContent = { y: number, row: boolean[], }
 export type PointAndCellContent = { point: Point, cell: boolean }
 
 export interface Grid<T extends Grid<T>> {
@@ -12,14 +11,13 @@ export interface Grid<T extends Grid<T>> {
     readonly colNumber: number;
 
     cell(p: Point): boolean;
-    rowsIterator(): Generator<RowNumberAndContent, void, void>;
+    // TODO: remove the "grid" prefix
     gridIterator(): Generator<PointAndCellContent, void, void>;
     withCellAlive(p: Point, alive: boolean): T;
     contains(p: Point): boolean;
     neighbors(p: Point): boolean[];
 }
 
-// TODO: Remove that any
 interface GridTypesMap {
   [key: string]: new (rowNumber: number, colNumber: number) => Grid<any>;
 }

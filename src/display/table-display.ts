@@ -2,6 +2,7 @@ import { Grid } from "../grid/grid";
 import { Display } from "./display";
 import { GAME_CONTAINER } from "../constants";
 import { Point } from "../grid/point";
+import { rowsIterator } from "../grid/rows-iterator";
 
 export class TableDisplay implements Display {
 
@@ -14,7 +15,7 @@ export class TableDisplay implements Display {
     GAME_CONTAINER.firstElementChild?.remove();
 
     const contents = document.createElement("table");
-    for (let {y, row} of grid.rowsIterator()) {
+    for (let {y, row} of rowsIterator(grid)) {
       let rowElement = document.createElement("tr");
       
       for (let [x, column] of row.entries()) {
