@@ -6,9 +6,8 @@ import { initializeGrid } from "./initialize-grid";
 export type PointAndCellContent = { point: Point, cell: boolean }
 
 export interface Grid<T extends Grid<T>> {
-  // TODO: Remove the "number" postfix from the names
-  readonly rowNumber: number;
-  readonly colNumber: number;
+  readonly rows: number;
+  readonly cols: number;
 
   cell(p: Point): boolean;
   [Symbol.iterator](): Generator<PointAndCellContent, void, void>;

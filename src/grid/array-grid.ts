@@ -8,14 +8,14 @@ export class ArrayGrid implements Grid<ArrayGrid> {
   private readonly internalGrid: ReadonlyArray<boolean>;
 
   constructor(
-    readonly rowNumber: number,
-    readonly colNumber: number,
+    readonly rows: number,
+    readonly cols: number,
     initialGrid?: boolean[],
   ) {
     if (initialGrid) {
       this.internalGrid = initialGrid as ReadonlyArray<boolean>;
     } else {
-      this.internalGrid = new Array(colNumber * rowNumber).fill(false);
+      this.internalGrid = new Array(cols * rows).fill(false);
     }
   }
 
@@ -24,7 +24,7 @@ export class ArrayGrid implements Grid<ArrayGrid> {
 
   public cell(p: Point): boolean {
     if (!this.contains(p)) {
-      throw new InvalidArgumentError(`Point ${JSON.stringify(p)} is not in the grid of ${this.rowNumber}x${this.colNumber}`)
+      throw new InvalidArgumentError(`Point ${JSON.stringify(p)} is not in the grid of ${this.rows}x${this.cols}`)
     }
 
     return this.internalGrid[this.pointToIndex(p)];
@@ -34,12 +34,12 @@ export class ArrayGrid implements Grid<ArrayGrid> {
   public withCellAlive(p: Point, alive: boolean): ArrayGrid {
     const modifiedGrid = this.internalGrid.slice();
     modifiedGrid[this.pointToIndex(p)] = alive;
-    return new ArrayGrid(this.rowNumber, this.colNumber, modifiedGrid);
+    return new ArrayGrid(this.rows, this.cols, modifiedGrid);
   }
 
   *[Symbol.iterator](): Generator<PointAndCellContent, void, void> {
-    for (let x = 0; x < this.colNumber; x++) {
-      for (let y = 0; y < this.rowNumber; y++) {
+    for (let x = 0; x < this.cols; x++) {
+      for (let y = 0; y < this.rows; y++) {
         const point = new Point(x, y);
         yield { point: point, cell: this.cell(point) }
       }
@@ -47,7 +47,7 @@ export class ArrayGrid implements Grid<ArrayGrid> {
   }
 
   private pointToIndex(p: Point): number {
-    return (p.y * this.rowNumber) + p.x;
+    return (p.y * this.rows) + p.x;
   }
 
 }

@@ -11,8 +11,8 @@ export class CanvasDisplay implements Display {
 
   render(grid: Grid<any>): void {
     const canvas = this.getOrCreateCanvas();
-    canvas.width = grid.colNumber * this.cellSize;
-    canvas.height = grid.rowNumber * this.cellSize;
+    canvas.width = grid.cols * this.cellSize;
+    canvas.height = grid.rows * this.cellSize;
 
     const ctx = canvas.getContext("2d")!;
     ctx.clearRect(0, 0, canvas.width, canvas.height); 
