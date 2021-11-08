@@ -5,8 +5,8 @@ import { Config } from "./config";
 
 export class Game {
   private intervalId: number;
-  private currentConfig: Config;
-  public grid: Grid;
+  private currentConfig!: Config;
+  public grid!: Grid;
 
   constructor(config: Config) {
     this.updateConfig(config); 

@@ -12,6 +12,7 @@
   "author": "Haf",
   "license": "ISC",
   "devDependencies": {
+    "@types/bootstrap": "^5.1.6",
     "css-loader": "^6.5.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.4.4",
