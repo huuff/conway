@@ -1,6 +1,7 @@
 import { Point } from "./point";
 import { InvalidArgumentError } from "../errors";
 import { Grid, RowNumberAndContent, PointAndCellContent } from "./grid";
+import { contains as gridContains, neighbors as gridNeighbors } from "./grid-utils";
 
 
 export class ArrayGrid implements Grid<ArrayGrid> {
@@ -18,6 +19,9 @@ export class ArrayGrid implements Grid<ArrayGrid> {
     }
   }
 
+  public contains = (p: Point) => gridContains<ArrayGrid>(this, p);
+  public neighbors = (p: Point) => gridNeighbors<ArrayGrid>(this, p);
+
   public cell(p: Point): boolean {
     if (!this.contains(p)) {
       throw new InvalidArgumentError(`Point ${JSON.stringify(p)} is not in the grid of ${this.rowNumber}x${this.colNumber}`)
@@ -26,9 +30,6 @@ export class ArrayGrid implements Grid<ArrayGrid> {
     return this.internalGrid[this.pointToIndex(p)];
   }
 
-  public neighbors(p: Point): boolean[] {
-    return p.neighbors().filter(n => this.contains(n)).map(n => this.cell(n));
-  }
 
   public withCellAlive(p: Point, alive: boolean): ArrayGrid {
     const modifiedGrid = this.internalGrid.slice();
@@ -52,9 +53,6 @@ export class ArrayGrid implements Grid<ArrayGrid> {
     }
   }
 
-  public contains(p: Point): boolean {
-    return p.x >= 0 && p.y >= 0 && p.x < this.colNumber && p.y < this.rowNumber;
-  }
 
   private pointToIndex(p: Point): number {
     return (p.y * this.rowNumber) + p.x;
