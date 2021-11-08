@@ -19,7 +19,7 @@ export class CanvasDisplay implements Display {
     
     ctx.beginPath();
     ctx.fillStyle = "black";
-    for (let {point, cell} of grid.gridIterator()) {
+    for (let {point, cell} of grid) {
       if (cell) {
         this.drawCell(ctx, point);
       }
@@ -28,7 +28,7 @@ export class CanvasDisplay implements Display {
 
     ctx.beginPath();
     ctx.fillStyle = "rgba(255, 0, 0, 0.5)";
-    for (let { point } of grid.gridIterator()) {
+    for (let { point } of grid) {
       if (point.in(this.highlighted)) {
         this.drawCell(ctx, point);
       }

@@ -8,7 +8,7 @@ export function initializeGrid<T extends Grid<T>>(grid: T, birthFactor: number):
 
   console.log("Initializing grid");
 
-  for (let { point } of grid.gridIterator()) {
+  for (let { point } of grid) {
     if (Math.random() < birthFactor) {
       grid = grid.withCellAlive(point, true)
     } 

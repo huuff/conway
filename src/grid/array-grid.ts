@@ -37,7 +37,7 @@ export class ArrayGrid implements Grid<ArrayGrid> {
     return new ArrayGrid(this.rowNumber, this.colNumber, modifiedGrid);
   }
 
-  public *gridIterator(): Generator<PointAndCellContent, void, void> {
+  *[Symbol.iterator](): Generator<PointAndCellContent, void, void> {
     for (let x = 0; x < this.colNumber; x++) {
       for (let y = 0; y < this.rowNumber; y++) {
         const point = new Point(x, y);
