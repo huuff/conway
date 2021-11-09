@@ -1,12 +1,12 @@
 import { Point } from "./point";
-import { InvalidArgumentError } from "../errors";
-import { Grid, PointAndCellContent } from "./grid";
+import { Grid } from "./grid";
 import { 
   contains as gridContains,
   neighbors as gridNeighbors,
   gridIterator,
 } 
   from "./grid-utils";
+import { checkBounds } from "./decorators";
 
 
 export class ArrayGrid implements Grid<ArrayGrid> {
@@ -27,16 +27,13 @@ export class ArrayGrid implements Grid<ArrayGrid> {
   public contains = (p: Point) => gridContains<ArrayGrid>(this, p);
   public neighbors = (p: Point) => gridNeighbors<ArrayGrid>(this, p);
 
-  // TODO: Can I make these constraints into decorators?
+  @checkBounds
   public cell(p: Point): boolean {
-    if (!this.contains(p)) {
-      throw new InvalidArgumentError(`Point ${JSON.stringify(p)} is not in the grid of ${this.rows}x${this.cols}`)
-    }
-
     return this.internalGrid[this.pointToIndex(p)];
   }
 
 
+  @checkBounds
   public withCellAlive(p: Point, alive: boolean): ArrayGrid {
     const modifiedGrid = this.internalGrid.slice();
     modifiedGrid[this.pointToIndex(p)] = alive;

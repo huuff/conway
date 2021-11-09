@@ -2,6 +2,7 @@ import { Display, displayFromConfig } from "./display/display";
 import { gridFromConfig, Grid } from "./grid/grid";
 import { update } from "./update";
 import { Config } from "./config";
+import { Point } from "./grid/point";
 
 export class Game {
   private intervalId: number;

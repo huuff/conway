@@ -5,6 +5,7 @@ import {
   neighbors as gridNeighbors,
   gridIterator,
 } from "./grid-utils";
+import { checkBounds } from "./decorators";
 
 export class SetGrid implements Grid<SetGrid> {
   private readonly internalGrid: ReadonlySet<string>;
@@ -25,10 +26,12 @@ export class SetGrid implements Grid<SetGrid> {
   public neighbors = (p: Point) => gridNeighbors<SetGrid>(this, p);
   public [Symbol.iterator] = () => gridIterator<SetGrid>(this);
 
+  @checkBounds
   public cell(p: Point): boolean {
     return this.internalGrid.has(p.toString());
   }
 
+  @checkBounds
   public withCellAlive(p: Point, alive: boolean): SetGrid {
     let newGrid = new Set(this.internalGrid);
     if (!alive) {

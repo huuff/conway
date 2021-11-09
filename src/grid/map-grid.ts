@@ -5,6 +5,7 @@ import {
   neighbors as gridNeighbors,
   gridIterator,
 } from "./grid-utils";
+import { checkBounds } from "./decorators";
 
 type MapObject = { [key: string]: boolean };
 
@@ -32,10 +33,12 @@ export class MapGrid implements Grid<MapGrid> {
   public neighbors = (p: Point) => gridNeighbors<MapGrid>(this, p);
   public [Symbol.iterator] = () => gridIterator<MapGrid>(this);
 
+  @checkBounds
   public cell(p: Point): boolean {
     return this.internalGrid[p.toString()];
   }
 
+  @checkBounds
   public withCellAlive(p: Point, alive: boolean): MapGrid {
     let newGrid = { ...this.internalGrid };
     newGrid[p.toString()] = alive;

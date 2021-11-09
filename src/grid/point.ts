@@ -30,4 +30,9 @@ export class Point {
   public toString(): string {
     return `(${this.x}, ${this.y})`;
   }
+
+  // Weird shit for AOP
+  public isPoint(): boolean {
+    return true;
+  }
 }

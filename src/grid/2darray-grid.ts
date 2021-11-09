@@ -5,6 +5,7 @@ import {
   neighbors as gridNeighbors,
   gridIterator
 } from "./grid-utils";
+import { checkBounds } from "./decorators";
 
 export class TwoDArrayGrid implements Grid<TwoDArrayGrid> {
   private readonly internalGrid: ReadonlyArray<ReadonlyArray<boolean>>
@@ -31,10 +32,12 @@ export class TwoDArrayGrid implements Grid<TwoDArrayGrid> {
   public neighbors = (p: Point) => gridNeighbors<TwoDArrayGrid>(this, p);
   public [Symbol.iterator] = () => gridIterator<TwoDArrayGrid>(this);
 
+  @checkBounds
   public cell(p: Point): boolean {
     return this.internalGrid[p.y][p.x];
   }
 
+  @checkBounds
   public withCellAlive(p: Point, alive: boolean): TwoDArrayGrid {
     let newGrid: boolean[][] = [];
     this.internalGrid.forEach(row => newGrid.push([...row]));
