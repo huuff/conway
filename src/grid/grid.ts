@@ -2,6 +2,7 @@ import { Point } from "./point";
 import { ArrayGrid } from "./array-grid";
 import {Config} from "../config";
 import { initializeGrid } from "./initialize-grid";
+import { TwoDArrayGrid } from "./2darray-grid";
 
 export type PointAndCellContent = { point: Point, cell: boolean }
 
@@ -22,6 +23,7 @@ interface GridTypesMap {
 
 const gridTypes: GridTypesMap = {
   array: ArrayGrid,
+  "2d array": TwoDArrayGrid,
 }
 
 export function gridFromConfig<T extends Grid<T>>(config: Config): Grid<T> {

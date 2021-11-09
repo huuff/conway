@@ -28,7 +28,7 @@ export class Config {
   }
 
   public gridDifferentTo(other: Config): boolean {
-    return this.rowNumber != other.rowNumber || this.colNumber != other.colNumber || this.birthFactor != other.birthFactor;
+    return this.rowNumber != other.rowNumber || this.colNumber != other.colNumber || this.birthFactor != other.birthFactor || this.gridType != other.gridType;
   }
 
   private static getInputNumber(inputId: string): (number | undefined) {

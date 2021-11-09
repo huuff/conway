@@ -1,7 +1,12 @@
 import { Point } from "./point";
 import { InvalidArgumentError } from "../errors";
 import { Grid, PointAndCellContent } from "./grid";
-import { contains as gridContains, neighbors as gridNeighbors } from "./grid-utils";
+import { 
+  contains as gridContains,
+  neighbors as gridNeighbors,
+  gridIterator,
+} 
+  from "./grid-utils";
 
 
 export class ArrayGrid implements Grid<ArrayGrid> {
@@ -22,6 +27,7 @@ export class ArrayGrid implements Grid<ArrayGrid> {
   public contains = (p: Point) => gridContains<ArrayGrid>(this, p);
   public neighbors = (p: Point) => gridNeighbors<ArrayGrid>(this, p);
 
+  // TODO: Can I make these constraints into decorators?
   public cell(p: Point): boolean {
     if (!this.contains(p)) {
       throw new InvalidArgumentError(`Point ${JSON.stringify(p)} is not in the grid of ${this.rows}x${this.cols}`)
@@ -37,14 +43,7 @@ export class ArrayGrid implements Grid<ArrayGrid> {
     return new ArrayGrid(this.rows, this.cols, modifiedGrid);
   }
 
-  *[Symbol.iterator](): Generator<PointAndCellContent, void, void> {
-    for (let x = 0; x < this.cols; x++) {
-      for (let y = 0; y < this.rows; y++) {
-        const point = new Point(x, y);
-        yield { point: point, cell: this.cell(point) }
-      }
-    }
-  }
+  public [Symbol.iterator] = () => gridIterator<ArrayGrid>(this);
 
   private pointToIndex(p: Point): number {
     return (p.y * this.rows) + p.x;
