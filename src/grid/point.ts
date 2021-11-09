@@ -26,4 +26,8 @@ export class Point {
   public in(points: Point[]): boolean {
     return points.some(p => p.equals(this));
   }
+
+  public toString(): string {
+    return `(${this.x}, ${this.y})`;
+  }
 }
