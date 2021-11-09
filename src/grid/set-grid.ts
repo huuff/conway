@@ -7,7 +7,7 @@ import {
 } from "./grid-utils";
 import { checkBounds } from "./decorators";
 
-export class SetGrid implements Grid<SetGrid> {
+export class SetGrid implements Grid {
   private readonly internalGrid: ReadonlySet<string>;
 
   constructor(
@@ -22,9 +22,9 @@ export class SetGrid implements Grid<SetGrid> {
     }
   }
 
-  public contains = (p: Point) => gridContains<SetGrid>(this, p);
-  public neighbors = (p: Point) => gridNeighbors<SetGrid>(this, p);
-  public [Symbol.iterator] = () => gridIterator<SetGrid>(this);
+  public contains = (p: Point) => gridContains(this, p);
+  public neighbors = (p: Point) => gridNeighbors(this, p);
+  public [Symbol.iterator] = () => gridIterator(this);
 
   @checkBounds
   public cell(p: Point): boolean {

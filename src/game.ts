@@ -2,12 +2,11 @@ import { Display, displayFromConfig } from "./display/display";
 import { gridFromConfig, Grid } from "./grid/grid";
 import { update } from "./update";
 import { Config } from "./config";
-import { Point } from "./grid/point";
 
 export class Game {
   private intervalId: number;
   private currentConfig!: Config;
-  public grid!: Grid<any>;
+  public grid!: Grid;
 
   constructor(config: Config) {
     this.updateConfig(config); 

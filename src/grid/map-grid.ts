@@ -9,7 +9,7 @@ import { checkBounds } from "./decorators";
 
 type MapObject = { [key: string]: boolean };
 
-export class MapGrid implements Grid<MapGrid> {
+export class MapGrid implements Grid {
   private readonly internalGrid: MapObject;
 
   constructor(
@@ -29,9 +29,9 @@ export class MapGrid implements Grid<MapGrid> {
     }
   }
 
-  public contains = (p: Point) => gridContains<MapGrid>(this, p);
-  public neighbors = (p: Point) => gridNeighbors<MapGrid>(this, p);
-  public [Symbol.iterator] = () => gridIterator<MapGrid>(this);
+  public contains = (p: Point) => gridContains(this, p);
+  public neighbors = (p: Point) => gridNeighbors(this, p);
+  public [Symbol.iterator] = () => gridIterator(this);
 
   @checkBounds
   public cell(p: Point): boolean {

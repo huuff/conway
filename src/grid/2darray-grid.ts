@@ -7,7 +7,7 @@ import {
 } from "./grid-utils";
 import { checkBounds } from "./decorators";
 
-export class TwoDArrayGrid implements Grid<TwoDArrayGrid> {
+export class TwoDArrayGrid implements Grid {
   private readonly internalGrid: ReadonlyArray<ReadonlyArray<boolean>>
 
   constructor(
@@ -28,9 +28,9 @@ export class TwoDArrayGrid implements Grid<TwoDArrayGrid> {
     }
   }
 
-  public contains = (p: Point) => gridContains<TwoDArrayGrid>(this, p);
-  public neighbors = (p: Point) => gridNeighbors<TwoDArrayGrid>(this, p);
-  public [Symbol.iterator] = () => gridIterator<TwoDArrayGrid>(this);
+  public contains = (p: Point) => gridContains(this, p);
+  public neighbors = (p: Point) => gridNeighbors(this, p);
+  public [Symbol.iterator] = () => gridIterator(this);
 
   @checkBounds
   public cell(p: Point): boolean {

@@ -11,7 +11,7 @@ export class TableDisplay implements Display {
     private readonly highlighted: Point[],
   ) {}
 
-  public render(grid: Grid<any>): void {
+  public render(grid: Grid): void {
     GAME_CONTAINER.firstElementChild?.remove();
 
     const contents = document.createElement("table");

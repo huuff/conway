@@ -1,6 +1,6 @@
 import { Grid } from "./grid/grid";
 
-export function update<T extends Grid<T>>(grid: T): T {
+export function update(grid: Grid): Grid {
   for (let { point, cell } of grid) {
     const neighborsAlive = grid.neighbors(point).filter(n => n).reduce((a, _) => a + 1, 0);
     if (cell) {

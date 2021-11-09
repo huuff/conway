@@ -9,7 +9,7 @@ import {
 import { checkBounds } from "./decorators";
 
 
-export class ArrayGrid implements Grid<ArrayGrid> {
+export class ArrayGrid implements Grid {
   private readonly internalGrid: ReadonlyArray<boolean>;
 
   constructor(
@@ -24,8 +24,8 @@ export class ArrayGrid implements Grid<ArrayGrid> {
     }
   }
 
-  public contains = (p: Point) => gridContains<ArrayGrid>(this, p);
-  public neighbors = (p: Point) => gridNeighbors<ArrayGrid>(this, p);
+  public contains = (p: Point) => gridContains(this, p);
+  public neighbors = (p: Point) => gridNeighbors(this, p);
 
   @checkBounds
   public cell(p: Point): boolean {
@@ -40,7 +40,7 @@ export class ArrayGrid implements Grid<ArrayGrid> {
     return new ArrayGrid(this.rows, this.cols, modifiedGrid);
   }
 
-  public [Symbol.iterator] = () => gridIterator<ArrayGrid>(this);
+  public [Symbol.iterator] = () => gridIterator(this);
 
   private pointToIndex(p: Point): number {
     return (p.y * this.rows) + p.x;

@@ -6,7 +6,7 @@ import { CanvasDisplay } from "./canvas-display";
 import { Point } from "../grid/point";
 
 export interface Display {
-  render(grid: Grid<any>): void;
+  render(grid: Grid): void;
 }
 
 interface DisplayTypesMap {

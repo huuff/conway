@@ -11,7 +11,7 @@ export class AsciiDisplay implements Display {
     private readonly highlighted: Point[],
   ) {}
 
-  public render(grid: Grid<any>) {
+  public render(grid: Grid) {
     GAME_CONTAINER.firstElementChild?.remove();
 
     const contents = document.createElement("p");

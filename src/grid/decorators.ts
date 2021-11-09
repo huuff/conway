@@ -9,7 +9,7 @@ export function checkBounds(target: any, propertyKey: string, descriptor: Proper
       throw new Error(`The "checkBounds" decorator can only be applied on a method of a grid whose first argument is a point!`)
     }
     let point = arguments[0] as Point;
-    let grid = this as Grid<any>;
+    let grid = this as Grid;
 
     if (point.x < 0 || point.y < 0 || point.x >= grid.cols || point.y >= grid.rows) {
       throw new Error(`Point ${point.toString()} is not in the ${point.x}x${point.y} grid!`)
